@@ -10,6 +10,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import pages.LoginPage;
 import utils.CommonMethods;
 import utils.ConfigReader;
 import utils.Constants;
@@ -26,17 +27,14 @@ public class LoginSteps extends CommonMethods {
 
     @When("user enters valid admin username and password")
     public void user_enters_valid_admin_username_and_password() {
-        WebElement usernameField = driver.findElement(By.id("txtUsername"));
-        WebElement passwordField = driver.findElement(By.id("txtPassword"));
-        sendText(usernameField, ConfigReader.getPropertyValue("username"));
-        sendText(passwordField, ConfigReader.getPropertyValue("password"));
+        sendText(login.usernameField, ConfigReader.getPropertyValue("username"));
+        sendText(login.passwordField, ConfigReader.getPropertyValue("password"));
     }
 
 
     @When("user clicks on login button")
     public void user_clicks_on_login_button() {
-        WebElement loginField = driver.findElement(By.id("btnLogin"));
-        click(loginField);
+        click(login.loginButton);
     }
 
     @Then("user should be able to see dashboard page")
@@ -46,10 +44,8 @@ public class LoginSteps extends CommonMethods {
 
     @When("user enters invalid admin username and password")
     public void user_enters_invalid_admin_username_and_password() {
-        WebElement usernameField = driver.findElement(By.id("txtUsername"));
-        WebElement passwordField = driver.findElement(By.id("txtPassword"));
-       sendText(usernameField, "admin1");
-       sendText(passwordField, "HUm@n");
+       sendText(login.usernameField, "admin1");
+       sendText(login.passwordField, "HUm@n");
     }
 
 
@@ -57,6 +53,5 @@ public class LoginSteps extends CommonMethods {
     public void user_should_be_able_to_see_error_message() {
         System.out.println("I am able to see error message");
     }
-
 
 }

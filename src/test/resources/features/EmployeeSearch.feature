@@ -1,25 +1,21 @@
 Feature: Employee search
 
-  @smoke
-  Scenario: Search an employee by employee id
-    Given user is navigated to HRMS application
-    When user enters valid admin username and password
-    And user clicks on login button
-    Then user should be able to see dashboard page
-    When user clicks on PIM option
-    And user clicks on employee list option
-    When user enters employee id
-    And user clicks on search button
-    Then user should be able to see employee information
+  Background:
+    #Given user is navigated to HRMS application
+    * user enters valid admin username and password
+    * user clicks on login button
+    * user should be able to see dashboard page
+    * user clicks on PIM option
+    * user clicks on employee list option
 
-    @smoke1
+  @smoke @background @regression
+  Scenario: Search an employee by employee id
+    * user enters employee id
+    * user clicks on search button
+    * user should be able to see employee information
+
+    @smoke1 @background @regression
     Scenario: Search an employee by name
-      Given user is navigated to HRMS application
-      When user enters valid admin username and password
-      And user clicks on login button
-      Then user should be able to see dashboard page
-      When user clicks on PIM option
-      And user clicks on employee list option
       When user enters name of the employee
       And user clicks on search button
       Then user should be able to see employee information
